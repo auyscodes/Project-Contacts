@@ -1,0 +1,48 @@
+// form (id="duck", action="/mailer", method="post")
+        // div (id="box")
+        //     p
+        //         input (type="radio", name="gender", value="Mr.", checked) Mr.
+        //         input (type="radio", name="gender", value="Mrs.", checked) Mrs.
+        //         input (type="radio", name="gender", value="Ms.", checked) Ms.
+        //         input (type="radio", name="gender", value="Dr.", checked) Dr.
+        //     p
+        //         First Name:
+        //         input (type="text", name="firstname", required, autofocus) 
+        //         Last Name:
+        //         input (type="text", name="lastname", required)
+        //     p
+        //         Street:
+        //         input (type="text", name="street")
+        //         City:
+        //         input (type="text", name="city")
+        //     p
+        //         State:
+        //         select (name="state")
+        //             option (value="NJ")NJ
+        //             option (value="NY")NY
+        //             option (value="PA")PA
+        //             option (value="CT")CT
+        //         Zip:
+        //         input (type="text", name="zip")
+            
+        //     p
+        //         Phone:
+        //         input (type="text", name="phone")
+            
+
+        //     p
+        //         Email:
+        //         input (type="email", name="email")
+
+        //     p
+        //         How may we contact you?
+        //         input (type="checkbox", name="contactbyphone", value="Yes") Phone
+                
+        //         input (type="checkbox", name="contactbymail", value="Yes") Mail
+                
+        //         input (type="checkbox", name="contactbyemail", value="Yes") Email
+                
+        //         input (type="checkbox", name="contactbyany", value="Yes" checked) Any
+                
+
+        //     input (type="submit", value="Submit")

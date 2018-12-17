@@ -1,0 +1,143 @@
+html
+  head
+    title Submit Form
+    link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/pretty.css')
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-info.justify-content-between
+      a.navbar-brand(href='/') Homepage
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/mailer')
+              | Mailer
+          li.nav-item.active
+            a.nav-link(href='/contacts') Contacts
+        ul.navbar-nav
+          li.nav-item.active
+            a(href='/login')
+              button.btn.btn-success
+                |Login
+    .container
+      form#form(action='/mailer', method='post')
+        h3 Contacts Form
+        h4 Please put your information
+        fieldset
+          input(type='radio', name='gender', value='Mr.', checked='')
+          |  Mr.
+          input(type='radio', name='gender', value='Mrs.')
+          |  Mrs.
+          input(type='radio', name='gender', value='Ms.')
+          |  Ms.
+          input(type='radio', name='gender', value='Dr.')
+          |  Dr.
+        fieldset
+          input(placeholder='First Name', type='text', name='firstname', tabindex='1', required='', autofocus='')
+        fieldset
+          input(placeholder='Last Name', type='text', name='lastname', tabindex='2', required='')
+        fieldset
+          input(placeholder='Street', type='text', name='street', tabindex='3')
+        fieldset
+          input(placeholder='City', type='text', name='city', tabindex='4')
+        fieldset
+          | State:
+          select(name='state')
+            option(value='NJ') NJ
+            option(value='NY') NY
+            option(value='PA') PA
+            option(value='CT') CT
+        fieldset
+          input(placeholder='Zip', type='text', name='zip', tabindex='5', required='')
+        fieldset
+          input(placeholder='Email Address', type='email', name='email', tabindex='6', required='' )
+        fieldset
+          input(placeholder='Phone Number', type='tel', tabindex='7', required='')
+        fieldset
+          | How may we contact you? 
+          input(type='checkbox', name='contactbyphone', value='Yes')
+          |  Phone
+          input(type='checkbox', name='contactbymail', value='Yes')
+          |  Mail
+          input(type='checkbox', name='contactbyemail', value='Yes')
+          |  Email
+          input(type='checkbox', name='contactbyany', value='Yes', checked='')
+          |  Any
+        fieldset
+          button#contact-submit(name='submit', type='submit', value='Submit') Submit
+        p.copyright
+          | Go to
+          a(href='/', title='homepage') Homepage
+
+
+//- doctype html
+//- html(lang='en')
+//-   head
+//-     title Submit Form
+//-     link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+//-     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+//-     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+//-     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+//-     link(rel='stylesheet', href='/stylesheets/style.css')
+//-   body
+//-     form#duck.form-horizontal(action='/mailer', method='post')
+//-       #box
+//-         .form-group
+          
+          
+
+//-           input(type='radio', name='gender', value='Mr.', checked='')
+//-           | Mr.
+//-           input(type='radio', name='gender', value='Mrs.')
+//-           | Mrs.
+//-           input(type='radio', name='gender', value='Ms.')
+//-           | Ms.
+//-           input(type='radio', name='gender', value='Dr.')
+//-           | Dr.
+//-         .form-group
+//-           label.control-label.col-sm-2(for='fname') First Name:
+//-           .col-sm-10
+//-             //- input.form-control#pwd(type='password', placeholder='Enter password')
+//-             //- | First Name:
+//-             input.form-control(type='text', name='firstname', id = 'fname', required='', autofocus='')
+//-             //- | Last Name:
+        
+
+//-           label.control-label.col-sm-2(for='lname') Last Name:
+//-           .col-sm-10
+//-             input.form-control(type='text', name='lastname', id='lname',  required='')
+//-         p
+//-           | Street:
+//-           input(type='text', name='street')
+//-           |                 City:
+//-           input(type='text', name='city')
+//-         p
+//-           | State:
+//-           select(name='state')
+//-             option(value='NJ') NJ
+//-             option(value='NY') NY
+//-             option(value='PA') PA
+//-             option(value='CT') CT
+//-           | Zip:
+//-           input(type='text', name='zip')
+//-         p
+//-           | Phone:
+//-           input(type='text', name='phone')
+//-         p
+//-           | Email:
+//-           input(type='email', name='email')
+//-         p
+//-           | How may we contact you?
+//-           input(type='checkbox', name='contactbyphone', value='Yes')
+//-           |  Phone
+//-           input(type='checkbox', name='contactbymail', value='Yes')
+//-           |  Mail
+//-           input(type='checkbox', name='contactbyemail', value='Yes')
+//-           |  Email
+//-           input(type='checkbox', name='contactbyany', value='Yes', checked='')
+//-           |  Any
+//-       input(type='submit', value='Submit')

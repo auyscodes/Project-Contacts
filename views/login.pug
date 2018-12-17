@@ -1,0 +1,13 @@
+html
+    head
+        title Login
+        link(rel='stylesheet', href='/stylesheets/login.css')
+    body
+        .login-page
+            .form
+                form.login-form(action='/login', method = 'post')
+                    input(type='text', name = 'username', placeholder='username')
+                    input(type='password', name='password', placeholder='password')
+                    button(type='submit') login
+                    p.message
+                        a(href='/') Go to Homepage

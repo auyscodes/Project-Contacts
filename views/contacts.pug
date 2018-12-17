@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    title Contacts
+    script(src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js')
+    link(href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css', rel='stylesheet')
+    link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    link(rel='stylesheet' href='stylesheets/pretty.css')
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-info.justify-content-between
+      a.navbar-brand(href='/') Homepage
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/mailer')
+              | Mailer
+          li.nav-item.active
+            a.nav-link(href='/contacts') Contacts
+        ul.navbar-nav
+          li.nav-item.active
+            a(href='/logout')
+              button.btn.btn-success
+                |Logout
+    h1.text-center Contacts Table
+    #contacts
+      .table-responsive
+        table.table.table-striped
+          thead
+            -var val = result[0];
+            -var objKeyArray = Object.keys(val);
+            -var size = objKeyArray.length;
+              tr
+                -for(var i=1;i<size;++i){
+                  - var key = objKeyArray[i];
+                  th= key
+                -}
+                //- each value, index in val
+                //-   th= index
+                //-   -i++
+          tbody
+            each val, index in result
+              tr(id= index, class='maptr')
+                -for (var i=1;i<size;++i){
+                  - var output = val[Object.keys(val)[i]];
+                  td= output
+                -}
+                //- each value in val
+                  td= value
+                td <button class='update btn btn-info' > Update </button>  
+                td <button class='delete btn btn-info' > Delete </button>
+    hr
+    button#create.btn.btn-info
+      |  create
+    include form.pug
+    #map
+    include cscript.pug
+    

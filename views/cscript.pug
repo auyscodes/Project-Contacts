@@ -1,0 +1,147 @@
+script.
+  L.mapbox.accessToken = 'pk.eyJ1IjoibmJoYXR0YXIiLCJhIjoiY2pvNGo1Z3RyMDVhMjNybW9lM3RkaWR0YSJ9.bHcNPe6O_Onx7WWxpEp_gQ';
+  var mymap = L.mapbox.map('map', 'mapbox.streets');
+  mymap.setView([0, 0], 0);
+  var result = !{JSON.stringify(result)};
+  var markerArray = new Array();
+  function addHoverableMarkers(){
+    for (obj of result){
+    var marker = L.marker([obj.latlng[1], obj.latlng[0]]).addTo(mymap);
+    markerArray.push(marker); 
+    var contact = obj.street + ', ' + obj.city + ', ' + obj.state + ', ' + obj.zip; 
+    console.log("contacts" + contacts);
+    marker.bindTooltip(contact);
+  };
+  }
+  function removeMarkers(){
+    var length = markerArray.length;
+    var i = 0;
+    while (i<length){
+      mymap.removeLayer(markerArray.shift());
+      i++;
+    }
+  }
+
+  addHoverableMarkers();
+  function updateMarkers(){
+    removeMarkers();
+    addHoverableMarkers();
+  }
+  $("tbody").on("click", ".maptr" ,function(){
+    // console.log(this.id);
+    // var index = this.id;
+    // var latlng = [result[index].latlng[1], result[index].latlng[0]];
+    // mymap.setView(latlng, 15);
+    // console.log(latlng);
+  });
+  $("#create").on("click",  function(){
+    $("#form").show().data("task", "create");
+  });
+  $("tbody").on("click", ".update" ,  function(){
+    console.log("update clicked");
+    var tr = $(this).parent().parent();
+    var index = tr[0].id;
+    
+    prePopulateData(index);
+    $("#form").show().data("task", "update");
+
+  });
+
+
+  $("tbody").on("click",".delete" ,function(){
+    var tr = $(this).parent().parent();
+    var index = tr[0].id;
+    console.log(index);
+    console.log(result[index]._id);
+    $.ajax({
+      url : '/contacts/delete',
+      type : 'POST',
+      contentType : 'application/json',
+      data : JSON.stringify({_id : result[index]._id}),
+      success: function(data){
+        console.log(data);
+        result = data;
+        updateTable(result);
+        updateMarkers();
+      }
+    })
+    // console.log(tr[0].id);
+    // console.log($(this).parent().parent());
+
+  });
+  $("#form").submit(function(){
+    event.preventDefault();
+    var query = $("#form").data("task");
+    if (query === "create"){
+      $.post("/contacts/create", $("#form").serialize(), function(data){
+        console.log("-----------data------------");
+        console.log(data)
+        console.log("------------dataend----------------");
+        console.log("-----------result------------");
+        console.log(data)
+        console.log("------------result----------------");
+        result = data;
+        console.log(data);
+        updateTable(result);
+        updateMarkers();
+        $("#form").hide();
+      });
+    }
+    if (query === "update"){
+      $.post("/contacts/update", $("#form").serialize(), function(data){
+        result = data;
+        console.log(data);
+        updateTable(result);
+        $("#form").hide();
+        updateMarkers();
+      });
+
+      console.log("updated");
+    }
+
+  });
+  function updateTable(data){
+    $("table tbody").empty();
+    var index = 0;
+    for (let obj of data){
+      table_data = '';
+      // var parsed_obj = JSON.parse(obj);
+      // console.log(obj);
+      var objArrayKeys = Object.keys(obj);
+      var size = Object.keys(obj).length;
+      for (var i=1;i<size;++i){
+      //- for (let index in obj){
+        table_data += "<td>" + obj[Object.keys(obj)[i]] + "</td>";
+      }
+      table_data += "<td>" + "<button class='update btn btn-info' >" + "Update" + "</button>" +  "</td>"
+      table_data += "<td>" + "<button class='delete btn btn-info' >" + "Delete" + "</button>" +  "</td>"
+      $("table tbody").append(`<tr class='maptr' id='${index}'>` + table_data + "</tr>" );
+      index++;
+    }
+  }
+    function prePopulateData(index){
+      $(`#form input[value='${result[index].gender}']`).prop('checked', true);
+      $("#form input[name=_id]").attr('value' , `${result[index]._id}`)
+      $("#form input[name=firstname]").val(result[index].firstname);
+      $("#form input[name=lastname]").val(result[index].lastname);
+      $("#form input[name=street]").val(result[index].street);
+      $("#form input[name=city]").val(result[index].city);
+      $("#form input[name=zip]").val(result[index].zip);
+      $("#form input[name=phone]").val(result[index].phone);
+      $("#form input[name=email]").val(result[index].email);
+      $(`#form option[value='${result[index].state}']`).prop('selected',true);
+      if (result[index].contactbyany != "Yes"){
+        if (result[index].contactbyphone == "Yes"){
+          $("#form input:checkbox[name=contactbyphone]").prop('checked',true);
+        }
+        if (result[index].contactbyemail == "Yes"){
+          $("#form input:checkbox[name=contactbyemail]").prop('checked',true);
+        }
+        if (result[index].contactbymail == "Yes"){
+          $("#form input:checkbox[name=contactbymail]").prop('checked',true);
+        }
+        $("#form input:checkbox[name=contactbyany]").prop('checked',false);
+      }
+
+    }
+

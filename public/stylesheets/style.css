@@ -1,0 +1,29 @@
+body, html{
+    background-color: #E9ECEF;
+}
+.myBtn {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #17A2B8;
+    width: 10%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+
+.myBtn:hover,.myBtn:active,.myBtn:focus {
+    background: #17A2B8;
+  }
+.btn{
+    border-radius : 0;
+}
+
+/* #box{
+    margin: 0 auto;
+    width:30%
+} */

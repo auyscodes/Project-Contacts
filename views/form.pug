@@ -1,0 +1,95 @@
+//- form#form(action='/mailer', method='post', style="display: none;")
+//-   #box
+//-     p
+//-       input(type='text', name='_id', value='undefined', hidden='')
+//-     p
+//-       input(type='radio', name='gender', value='Mr.', checked='')
+//-       | Mr.
+//-       input(type='radio', name='gender', value='Mrs.')
+//-       | Mrs.
+//-       input(type='radio', name='gender', value='Ms.')
+//-       | Ms.
+//-       input(type='radio', name='gender', value='Dr.')
+//-       | Dr.
+//-     p
+//-       | First Name:
+//-       input(type='text', name='firstname', required='', autofocus='')
+//-       |                 Last Name:
+//-       input(type='text', name='lastname', required='')
+//-     p
+//-       | Street:
+//-       input(type='text', name='street')
+//-       |                 City:
+//-       input(type='text', name='city')
+//-     p
+//-       | State:
+//-       select(name='state')
+//-         option(value='NJ') NJ
+//-         option(value='NY') NY
+//-         option(value='PA') PA
+//-         option(value='CT') CT
+//-       |                 Zip:
+//-       input(type='text', name='zip')
+//-     p
+//-       | Phone:
+//-       input(type='text', name='phone')
+//-     p
+//-       | Email:
+//-       input(type='email', name='email')
+//-     p
+//-       | How may we contact you?
+//-       input(type='checkbox', name='contactbyphone', value='Yes')
+//-       |  Phone
+//-       input(type='checkbox', name='contactbymail', value='Yes')
+//-       |  Mail
+//-       input(type='checkbox', name='contactbyemail', value='Yes')
+//-       |  Email
+//-       input(type='checkbox', name='contactbyany', value='Yes', checked='')
+//-       |  Any
+//-   input(type='submit', value='Submit')
+
+
+.container
+      form#form(action='/mailer', method='post', style='display:none;')
+        fieldset
+          input(type='radio', name='gender', value='Mr.', checked='')
+          |  Mr.
+          input(type='radio', name='gender', value='Mrs.')
+          |  Mrs.
+          input(type='radio', name='gender', value='Ms.')
+          |  Ms.
+          input(type='radio', name='gender', value='Dr.')
+          |  Dr.
+        fieldset
+          input(placeholder='First Name', type='text', name='firstname', tabindex='1', required='', autofocus='')
+        fieldset
+          input(placeholder='Last Name', type='text', name='lastname', tabindex='2', required='')
+        fieldset
+          input(placeholder='Street', type='text', name='street', tabindex='3')
+        fieldset
+          input(placeholder='City', type='text', name='city', tabindex='4')
+        fieldset
+          | State:
+          select(name='state')
+            option(value='NJ') NJ
+            option(value='NY') NY
+            option(value='PA') PA
+            option(value='CT') CT
+        fieldset
+          input(placeholder='Zip', type='text', name='zip', tabindex='5', required='')
+        fieldset
+          input(placeholder='Email Address', type='email', name='email', tabindex='6', required='' )
+        fieldset
+          input(placeholder='Phone Number', type='tel', tabindex='7', required='')
+        fieldset
+          | How may we contact you? 
+          input(type='checkbox', name='contactbyphone', value='Yes')
+          |  Phone
+          input(type='checkbox', name='contactbymail', value='Yes')
+          |  Mail
+          input(type='checkbox', name='contactbyemail', value='Yes')
+          |  Email
+          input(type='checkbox', name='contactbyany', value='Yes', checked='')
+          |  Any
+        fieldset
+          button#contact-submit(name='submit', type='submit', value='Submit') Submit
