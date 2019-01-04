@@ -9,7 +9,7 @@ script.
     var marker = L.marker([obj.latlng[1], obj.latlng[0]]).addTo(mymap);
     markerArray.push(marker); 
     var contact = obj.street + ', ' + obj.city + ', ' + obj.state + ', ' + obj.zip; 
-    console.log("contacts" + contacts);
+    //- console.log("contacts" + contacts);
     marker.bindTooltip(contact);
   };
   }
@@ -27,46 +27,51 @@ script.
     removeMarkers();
     addHoverableMarkers();
   }
-  $("tbody").on("click", ".maptr" ,function(){
-    // console.log(this.id);
-    // var index = this.id;
-    // var latlng = [result[index].latlng[1], result[index].latlng[0]];
-    // mymap.setView(latlng, 15);
-    // console.log(latlng);
+  $("tbody").on("click", ".maptr" ,function(e){
+    //- event.stopPropagation();
+     if($(e.target).is("button")){
+       return;
+     }
+     if($(this).attr('class') == 'maptr'){
+      var index = this.id;
+      var latlng = [result[index].latlng[1], result[index].latlng[0]];
+      mymap.setView(latlng, 5);
+  }
+    //-  console.log(latlng);
   });
   $("#create").on("click",  function(){
     $("#form").show().data("task", "create");
   });
   $("tbody").on("click", ".update" ,  function(){
-    console.log("update clicked");
+    //- event.stopImmediatePropagation();
+    //- console.log("update clicked");
     var tr = $(this).parent().parent();
     var index = tr[0].id;
     
     prePopulateData(index);
     $("#form").show().data("task", "update");
+    //- mymap.setView[0,0];
 
   });
-
-
   $("tbody").on("click",".delete" ,function(){
+    //- event.stopImmediatePropagation();
     var tr = $(this).parent().parent();
     var index = tr[0].id;
-    console.log(index);
-    console.log(result[index]._id);
+    //- console.log(index);
+    //- console.log(result[index]._id);
     $.ajax({
       url : '/contacts/delete',
       type : 'POST',
       contentType : 'application/json',
       data : JSON.stringify({_id : result[index]._id}),
       success: function(data){
-        console.log(data);
+        //- console.log(data);
         result = data;
         updateTable(result);
         updateMarkers();
       }
     })
-    // console.log(tr[0].id);
-    // console.log($(this).parent().parent());
+    
 
   });
   $("#form").submit(function(){
@@ -74,14 +79,8 @@ script.
     var query = $("#form").data("task");
     if (query === "create"){
       $.post("/contacts/create", $("#form").serialize(), function(data){
-        console.log("-----------data------------");
-        console.log(data)
-        console.log("------------dataend----------------");
-        console.log("-----------result------------");
-        console.log(data)
-        console.log("------------result----------------");
         result = data;
-        console.log(data);
+        //- console.log(data);
         updateTable(result);
         updateMarkers();
         $("#form").hide();
@@ -90,7 +89,7 @@ script.
     if (query === "update"){
       $.post("/contacts/update", $("#form").serialize(), function(data){
         result = data;
-        console.log(data);
+        //- console.log(data);
         updateTable(result);
         $("#form").hide();
         updateMarkers();
@@ -109,7 +108,7 @@ script.
       // console.log(obj);
       var objArrayKeys = Object.keys(obj);
       var size = Object.keys(obj).length;
-      for (var i=1;i<size;++i){
+      for (var i=1;i<size-1;++i){
       //- for (let index in obj){
         table_data += "<td>" + obj[Object.keys(obj)[i]] + "</td>";
       }
@@ -119,8 +118,13 @@ script.
       index++;
     }
   }
+  //- $("tbody").on("click", ".cancelBtn", function(){
+  //-   console.log("cancel button event handler called");
+  //-   event.preventDefault();
+  //-   $("#form").hide();
+  //- })
     function prePopulateData(index){
-      $(`#form input[value='${result[index].gender}']`).prop('checked', true);
+      $(`#form input[value='${result[index].prefix}']`).prop('checked', true);
       $("#form input[name=_id]").attr('value' , `${result[index]._id}`)
       $("#form input[name=firstname]").val(result[index].firstname);
       $("#form input[name=lastname]").val(result[index].lastname);
@@ -144,4 +148,10 @@ script.
       }
 
     }
+    $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 

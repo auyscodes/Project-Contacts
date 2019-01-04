@@ -2,12 +2,27 @@ doctype html
 html
     head
         title Received
+        
+        link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+        link(rel='stylesheet' href='stylesheets/pretty.css')
     body
-        h1 Thank You!
-//     <head>
-//         <title>Received</title>
-//     </head>
-//     <body>
-//         <h1>Thank You!</h1>
-//     </body>
-// </html>
+        h1.text-center Thank You!
+        .jumbotron.specialjum
+            .overcontainer.body-content.text-center
+                p.lead Following infromation was received:
+                p.lead 
+                |   Name : !{processed_data.prefix} !{processed_data.firstname}  !{processed_data.lastname}
+                p.lead
+                |   Address : !{processed_data.street}, !{processed_data.city}, !{processed_data.state}, !{processed_data.zip}
+                p.lead
+                |   Phone : !{processed_data.phone}
+                p.lead
+                |   Email : !{processed_data.email}
+                p.lead
+                    a.myAnchor(href='/mailer')
+                        button.btn.btn-info Go Back
+                    hr.my-4
+                        

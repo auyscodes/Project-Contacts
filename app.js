@@ -13,9 +13,6 @@ var usersRouter = require('./routes/users');
 var mailerRouter = require('./routes/mailer');
 var contactsRouter = require('./routes/contacts');
 
-/*
-some addtion
-*/
 
 var username = "cmps369";
 var password = "finalproject";
@@ -27,9 +24,6 @@ bcrypt.genSalt(10, function(err, salt) {
 });
 
 
-/*
-end of some addtion
-*/
 
 var app = express();
 
@@ -65,17 +59,14 @@ app.get('/login', function(req, res, next){
   });
   
   app.get('/login_fail', function (req, res, next){
-    res.send('login_fail');
+    res.render('login_fail');
   })
   
   app.get('/logout', function (req,res,next){
     req.logout();
     res.redirect('/login');
   })
-//   app.post('/login', function(req,res){
-//       console.log(req.body);
-//       res.send("thank you")
-//   })
+
   app.post('/login',
    passport.authenticate('local', { successRedirect: '/contacts',
                                     failureRedirect: '/login_fail',
@@ -119,16 +110,10 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(username, done) {
-    // this is called when the user object associated with the session
-    // needs to be turned into a string.  Since we are only storing the user
-    // as a string - just return the username.
     done(null, username);
 });
 
 passport.deserializeUser(function(username, done) {
-    // normally we would find the user in the database and
-    // return an object representing the user (for example, an object
-    // that also includes first and last name, email, etc)
     done(null, username);
  });
 

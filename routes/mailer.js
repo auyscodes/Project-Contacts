@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next){
     main(req, res);
 
-    console.log(req.body);
+    // console.log(req.body);
     
 });
 
@@ -20,7 +20,7 @@ async function main(req, res){
   try{
     var processed_data = await ppd.processData(req);
     await dbc.dbOperation("insert", processed_data);
-    res.render('thankyou', {});
+    res.render('thankyou', {processed_data:processed_data});
   } catch (ex){
     console.error('catach block');
     console.error(ex);

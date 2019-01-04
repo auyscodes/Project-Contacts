@@ -28,22 +28,22 @@ html
         h3 Contacts Form
         h4 Please put your information
         fieldset
-          input(type='radio', name='gender', value='Mr.', checked='')
+          input(type='radio', name='prefix', value='Mr.', checked='')
           |  Mr.
-          input(type='radio', name='gender', value='Mrs.')
+          input(type='radio', name='prefix', value='Mrs.')
           |  Mrs.
-          input(type='radio', name='gender', value='Ms.')
+          input(type='radio', name='prefix', value='Ms.')
           |  Ms.
-          input(type='radio', name='gender', value='Dr.')
+          input(type='radio', name='prefix', value='Dr.')
           |  Dr.
         fieldset
           input(placeholder='First Name', type='text', name='firstname', tabindex='1', required='', autofocus='')
         fieldset
           input(placeholder='Last Name', type='text', name='lastname', tabindex='2', required='')
         fieldset
-          input(placeholder='Street', type='text', name='street', tabindex='3')
+          input(placeholder='Street', type='text', name='street', tabindex='3', required='')
         fieldset
-          input(placeholder='City', type='text', name='city', tabindex='4')
+          input(placeholder='City', type='text', name='city', tabindex='4', required='')
         fieldset
           | State:
           select(name='state')
@@ -56,7 +56,7 @@ html
         fieldset
           input(placeholder='Email Address', type='email', name='email', tabindex='6', required='' )
         fieldset
-          input(placeholder='Phone Number', type='tel', tabindex='7', required='')
+          input(placeholder='Phone Number', type='tel', name='phone', tabindex='7', required='')
         fieldset
           | How may we contact you? 
           input(type='checkbox', name='contactbyphone', value='Yes')
@@ -90,13 +90,13 @@ html
           
           
 
-//-           input(type='radio', name='gender', value='Mr.', checked='')
+//-           input(type='radio', name='prefix', value='Mr.', checked='')
 //-           | Mr.
-//-           input(type='radio', name='gender', value='Mrs.')
+//-           input(type='radio', name='prefix', value='Mrs.')
 //-           | Mrs.
-//-           input(type='radio', name='gender', value='Ms.')
+//-           input(type='radio', name='prefix', value='Ms.')
 //-           | Ms.
-//-           input(type='radio', name='gender', value='Dr.')
+//-           input(type='radio', name='prefix', value='Dr.')
 //-           | Dr.
 //-         .form-group
 //-           label.control-label.col-sm-2(for='fname') First Name:

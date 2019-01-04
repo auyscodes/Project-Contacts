@@ -3,13 +3,13 @@
 //-     p
 //-       input(type='text', name='_id', value='undefined', hidden='')
 //-     p
-//-       input(type='radio', name='gender', value='Mr.', checked='')
+//-       input(type='radio', name='prefix', value='Mr.', checked='')
 //-       | Mr.
-//-       input(type='radio', name='gender', value='Mrs.')
+//-       input(type='radio', name='prefix', value='Mrs.')
 //-       | Mrs.
-//-       input(type='radio', name='gender', value='Ms.')
+//-       input(type='radio', name='prefix', value='Ms.')
 //-       | Ms.
-//-       input(type='radio', name='gender', value='Dr.')
+//-       input(type='radio', name='prefix', value='Dr.')
 //-       | Dr.
 //-     p
 //-       | First Name:
@@ -52,22 +52,24 @@
 .container
       form#form(action='/mailer', method='post', style='display:none;')
         fieldset
-          input(type='radio', name='gender', value='Mr.', checked='')
+          input(type='text', name='_id', value='undefined', hidden='')
+        fieldset
+          input(type='radio', name='prefix', value='Mr.', checked='')
           |  Mr.
-          input(type='radio', name='gender', value='Mrs.')
+          input(type='radio', name='prefix', value='Mrs.')
           |  Mrs.
-          input(type='radio', name='gender', value='Ms.')
+          input(type='radio', name='prefix', value='Ms.')
           |  Ms.
-          input(type='radio', name='gender', value='Dr.')
+          input(type='radio', name='prefix', value='Dr.')
           |  Dr.
         fieldset
           input(placeholder='First Name', type='text', name='firstname', tabindex='1', required='', autofocus='')
         fieldset
           input(placeholder='Last Name', type='text', name='lastname', tabindex='2', required='')
         fieldset
-          input(placeholder='Street', type='text', name='street', tabindex='3')
+          input(placeholder='Street', type='text', name='street', tabindex='3', required='')
         fieldset
-          input(placeholder='City', type='text', name='city', tabindex='4')
+          input(placeholder='City', type='text', name='city', tabindex='4', required='')
         fieldset
           | State:
           select(name='state')
@@ -80,7 +82,7 @@
         fieldset
           input(placeholder='Email Address', type='email', name='email', tabindex='6', required='' )
         fieldset
-          input(placeholder='Phone Number', type='tel', tabindex='7', required='')
+          input(placeholder='Phone Number', type='tel', name='phone', tabindex='7', required='')
         fieldset
           | How may we contact you? 
           input(type='checkbox', name='contactbyphone', value='Yes')
@@ -93,3 +95,4 @@
           |  Any
         fieldset
           button#contact-submit(name='submit', type='submit', value='Submit') Submit
+          //- button#contact-submit(class = "cancelBtn" name='submit', type='button') Cancel

@@ -24,16 +24,18 @@ html
             a(href='/logout')
               button.btn.btn-success
                 |Logout
+    p
+      input#search.form-control(type='text', placeholder='Search', title='Type in a name')
     h1.text-center Contacts Table
     #contacts
       .table-responsive
-        table.table.table-striped
+        table.table.table-striped#myTable
           thead
             -var val = result[0];
             -var objKeyArray = Object.keys(val);
             -var size = objKeyArray.length;
               tr
-                -for(var i=1;i<size;++i){
+                -for(var i=1;i<size-1;++i){
                   - var key = objKeyArray[i];
                   th= key
                 -}
@@ -43,7 +45,7 @@ html
           tbody
             each val, index in result
               tr(id= index, class='maptr')
-                -for (var i=1;i<size;++i){
+                -for (var i=1;i<size-1;++i){
                   - var output = val[Object.keys(val)[i]];
                   td= output
                 -}
